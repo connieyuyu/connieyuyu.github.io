@@ -1,0 +1,431 @@
+$text-color: #4e5255;
+$title-color: #1f4115;
+$color-palette1: #e4d0cd;
+$color-palette2: #e2e2e4;
+$primary-font: 'Nunito Sans', sans-serif;
+$nav-font: 'PT Mono', monospace;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $primary-font;
+  color: $text-color;
+}
+
+/*---------- Header ----------*/
+
+
+header {
+  position: fixed;
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+
+.nav__list {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0px;
+  height: 100vh;
+  top: 10.5vh;
+  background-color: $color-palette1;
+  width: 100%;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in;
+  list-style: none;
+
+  li {
+    opacity: 0;
+    margin: 20px 0;
+    font-size: 2em;
+    
+  }
+  
+  a {
+    text-decoration: none;
+    color: $text-color;
+
+    &:visited {
+      color:$text-color;
+    }
+  }
+
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.nav__list-active {
+  transform: translateX(0%);
+}
+
+.nav__toggle {
+  display: block;
+  width: 32px;
+  height: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  right: 30px;
+  background-color: transparent;
+  cursor: pointer;
+
+    span {
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 0;
+    width: 32px;
+    height: 2px;
+    background-color: $color-palette1;
+    }
+
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      height: 2px;
+      background-color: $color-palette1;
+    }
+
+    &::before {
+      width: 25px;
+      top: 0;
+    }
+
+    &::after {
+      width: 25px;
+      bottom: 0;
+    }
+}
+
+/*---------- Main ----------*/
+
+/* background */
+
+.bg {
+  position: fixed;
+  z-index: -2;
+  backface-visibility: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0s 0.4s;
+}
+
+.bg-image {
+  background-image: url(../image/bg-main.png);
+  background-size: 100% auto;
+  background-position: top;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+/* general */
+
+h1, h3, h5 {
+  color: $title-color;
+}
+
+.section {
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  // min-height: calc(80vh - 89px);
+  padding: 50px 0;
+
+}
+
+.section:not(:last-child)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 50px;
+  background-color: $color-palette1;
+  left: 45%;
+}
+
+
+.section__container {
+  width: 80%;
+  
+
+  p {
+    text-align: justify;
+  }
+
+}
+
+.section__title {
+  margin: 20px 0;
+}
+
+
+/* hero */
+
+.hero {
+  min-height: calc(80vh - 89px);
+  margin-top: 80px;
+  color: $title-color;
+}
+
+.hero__containter {
+  width: 90%;
+}
+
+.hero__title {
+  font-size: 3em;
+  margin: 0 auto 5px;
+}
+
+.hero__subtitle {
+  position: relative;
+  margin: 0 auto 20px;
+}
+
+
+.hero__social {
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    color: $title-color;
+
+    &:visited {
+      color: $title-color
+    }
+
+    &:hover {
+      color: $color-palette1
+    }
+  }
+
+  i {
+    margin: 0 15px;
+    font-size: 1.25em;
+  }
+}
+
+/* tech stack */
+
+.tech-list {
+  
+  li {
+    list-style-type: none;
+    margin-bottom: 20px;
+
+    h5 {
+      text-align: left;
+      margin-bottom: 5px;
+      color: lighten($text-color, 30%)
+    }
+  }
+}
+
+/* experience */
+
+.section-item {
+  margin-bottom: 20px;
+}
+
+.item__title, .item__date{
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.item__title {
+  font-size: 20px;
+}
+
+.item__date {
+  color: lighten($text-color, 30%)
+}
+
+.item__tech {
+color: lighten($text-color, 30%);
+text-align: left;
+}
+
+
+/* projects */
+
+.project-item {
+  margin-bottom: 40px;
+
+  &:first-child {
+    margin-top: 40px;
+  }
+}
+
+.project-item__image {
+  width: 100%;
+  margin: 15px 0 0px 0;
+  border: 1px solid #eee;
+}
+
+.btn {
+  border: none;
+  border-radius: 3px;
+  background-color: $color-palette1;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: $text-color;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-view-more {
+  text-decoration: none;
+  color: $text-color;
+
+  &:hover {
+    border-bottom: 2px solid $color-palette1;
+  }
+}
+
+/*---------- Footer ----------*/
+
+footer {
+  margin-top: 50px;
+  padding: 30px 0;
+  background-color: #333;
+  opacity: 0.5;
+  
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+
+
+  i {
+    margin: 0 15px;
+    font-size: 1em;
+    color: #fff;
+  }
+}
+
+.footer__desc {
+  font-size: 0.75em;
+  text-align: center;
+  color: #fff;
+}
+
+/*--------------- Web Styles - Home ---------------*/
+
+@media only screen and (min-width: 950px) {
+
+  /*---------- header ----------*/
+
+header {
+  position: fixed;
+  z-index: 100;
+  box-shadow: none;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.nav__toggle {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  flex-flow: row wrap;
+  height: auto;
+  top: 0;
+  left: 0;
+  transform: translateX(0%);
+  // transition: transform 0.4s 0.4s cubic-bezier(0.42, 0.01, 0.23, 1), opacity 0.4s 0.4s;
+
+  li {
+    opacity: 1;
+    font-size: 1em;
+    padding: 0 20px;
+
+  }
+}
+
+.section:not(:last-child)::after {
+  left: 48%;
+}
+
+
+
+}
+
+/* ==========================================================================
+   project page
+   ========================================================================== */
+
+.project__item {
+  display: flex;
+  flex-flow: column wrap;
+  margin-bottom: 50px;
+}
+
+.project__detail {
+  display:inline-block;
+  flex:1;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.carousel {
+  flex: 1;
+}
+
+.btn-project {
+  font-size: 13px;
+}
+
+@media only screen and (min-width: 950px) {
+
+  .project__item {
+    flex-flow: row wrap;
+  }
+
+  .project__detail {
+    padding-right: 20px;
+  }
+
+  .carousel {
+    flex: 2;
+  }
+}
