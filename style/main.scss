@@ -53,18 +53,17 @@ header {
     opacity: 0;
     margin: 20px 0;
     font-size: 2em;
-    
-  }
   
-  a {
-    text-decoration: none;
-    color: $text-color;
+    a {
+      text-decoration: none;
+      color: $text-color;
 
-    &:visited {
-      color:$text-color;
+      &:visited {
+        color:$text-color;
+      }
+
     }
   }
-
 }
 
 @keyframes navLinkFade {
@@ -80,6 +79,31 @@ header {
 
 .nav__list-active {
   transform: translateX(0%);
+}
+
+.nav__item__link {
+position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: $text-color;
+    height: 4px;
+    transition-property: left, right;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+  }
+}
+
+.nav__item__link:hover::before, 
+.nav__item__link:focus::before, 
+.nav__item__link:active::before {
+  left: 0;
+  right: 0;
 }
 
 .nav__toggle {
@@ -162,7 +186,6 @@ h1, h3, h5 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  // min-height: calc(80vh - 89px);
   padding: 50px 0;
 
 }
@@ -282,30 +305,50 @@ text-align: left;
 
 /* projects */
 
-.project-item {
+.home-project-item {
   margin-bottom: 40px;
 
-  &:first-child {
-    margin-top: 40px;
-  }
 }
 
-.project-item__image {
+.project-image-wrap {
+  position: relative;
   width: 100%;
-  margin: 15px 0 0px 0;
-  border: 1px solid #eee;
+  background-color: #444;
 }
 
-.btn {
-  border: none;
-  border-radius: 3px;
-  background-color: $color-palette1;
-  padding: 5px 10px;
-  font-size: 12px;
-  color: $text-color;
-  cursor: pointer;
-  text-decoration: none;
+.project-image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
+
+.text-box {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.project-image-wrap:hover .project-image {
+  opacity: 0.3;
+}
+
+.project-image-wrap:hover .text-box {
+  opacity: 1;
+}
+
+.text {
+  background-color: $color-palette1;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
 
 .btn-view-more {
   text-decoration: none;
@@ -382,11 +425,29 @@ header {
   }
 }
 
+.nav__item__link::before {
+  height: 2px;
+}
+
 .section:not(:last-child)::after {
   left: 48%;
 }
 
+.home-project-item__container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
 
+.home-project-item {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.project-image {
+  height: 220px;
+  object-fit: cover;
+}
 
 }
 
@@ -409,6 +470,17 @@ header {
 
 .carousel {
   flex: 1;
+}
+
+.btn {
+  border: none;
+  border-radius: 3px;
+  background-color: $color-palette1;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: $text-color;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-project {
